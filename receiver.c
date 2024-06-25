@@ -1,3 +1,5 @@
+/* Pars SARICA */
+
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <stdio.h>

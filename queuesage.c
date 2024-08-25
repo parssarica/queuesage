@@ -21,7 +21,7 @@ int setup(msg* message, char* qn)
     message->attr.mq_msgsize = 256;
     message->attr.mq_curmsgs = 0;
     
-    message->mq = mq_open(qn, O_RDWR | O_CREAT | O_NONBLOCK, S_IRUSR | S_IWUSR, &(message->attr));
+    message->mq = mq_open(qn, O_RDWR | O_CREAT | O_NONBLOCK, S_IRUSR | S_IWUSR, &(message->attr));
     if(message->mq == (mqd_t)-1)
     {
         perror("mq_open");

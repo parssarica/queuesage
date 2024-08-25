@@ -14,7 +14,7 @@ typedef struct _msg
     char buffer[256];
 }msg;
 
-void setup(msg* message, char* qn);
-void send_msg(msg* message, char* msg, int priority);
-void receive(msg* message, unsigned int* priority, char** msg);
-void terminate_queue(msg* message);
+int setup(msg* message, char* qn);
+int send_msg(msg* message, char* msg, int priority);
+int receive(msg* message, unsigned int* priority, char** msg);
+int terminate_queue(msg* message);

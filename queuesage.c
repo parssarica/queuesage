@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <mqueue.h>
+#include <errno.h>
 
 typedef struct _msg
 {
@@ -44,11 +45,12 @@ int send_msg(msg* message, char* msg, int priority)
 int receive(msg* message, unsigned int* priority, char** msg)
 {
     int bytes_received = mq_receive(message->mq, message->buffer, 256, priority);
-    if(bytes_received == -1)
+    if(bytes_received == -1 && errno != EAGAIN)
     {
         perror("mq_receive");
         return -1;
     }
+    *msg = malloc(bytes_received);
     strncpy(*msg, message->buffer, 256);
     return bytes_received;
 }
